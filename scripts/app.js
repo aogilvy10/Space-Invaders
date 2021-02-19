@@ -6,7 +6,7 @@ const grid = document.querySelector('.grid')
 
 
 //DEFINING THE GRID
-const width = 12
+const width = 10
 const areaOfDiv = width * width
 const boxes = []
 
@@ -34,7 +34,7 @@ function createGrid(shooterStartPosition) {
   }
   // addShooter(shooterStartPosition)
 }
-
+console.log(boxes)
 
 //ADD SHOOTER
 // function addShooter(position) {

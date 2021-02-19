@@ -4,7 +4,9 @@
 
 body {
   height: 100vh;
+  margin: 0;
 }
+
 
 .grid-wrapper {
   height: 100vh;
@@ -18,7 +20,7 @@ body {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  height: 80%;
+  height: 100%;
   justify-content: center;
   height: 600px;
   width: 600px;
@@ -27,7 +29,7 @@ body {
 .grid div {
   border: 1px solid lightgrey;
   flex-grow: 1;
-  height: 44vh;
-  width: 73vw;
-  margin-bottom: 20vh;
+  height: 10%;
+  width: 10%;
 }
+
