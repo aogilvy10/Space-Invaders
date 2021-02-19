@@ -1,26 +1,26 @@
 function init() {
 
-  ///VARIABLES 
+  ///--------------VARIABLES--------------- 
   const grid = document.querySelector('.grid')
-
-
 
   //DEFINING THE GRID
   const width = 10
   const areaOfDiv = width * width
   const boxes = []
 
-
-
-
   //ALIENS
-  // const aliensHit = []
+  const alienClass = 'alien'
+  const alienStartPosition = 2
+  const currentAlienPosition = 0
+  const alienArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
 
 
   //SHOOTER
   const shooterClass = 'shooter'
   const shooterStartPosition = 94
   let currentShooterPosition = 94
+
+
 
   //MAKING THE GRID
 
@@ -33,7 +33,10 @@ function init() {
       boxes.push(boxNumber)
     }
     addShooter(shooterStartPosition)
+    addAliens(alienStartPosition)
   }
+
+
 
   //ADD SHOOTER
   function addShooter(position) {
@@ -44,11 +47,8 @@ function init() {
   //REMOVE SHOOTER
   function removeShooter(position) {
     boxes[position].classList.remove(shooterClass)
-    console.log('position being passed', position)
   }
   
-
-
 
   //MOVE THE SHOOTER
   function moveShooter(event) {
@@ -62,6 +62,18 @@ function init() {
     addShooter(currentShooterPosition)
   }
   
+
+  //ADD ALIENS
+  function addAliens() {
+    alienArray.forEach(alien => {
+      boxes[alien].classList.add(alienClass)
+    })
+  }
+  
+
+
+
+
   //EVENT LISTENERS
   document.addEventListener('keyup', moveShooter)
 
