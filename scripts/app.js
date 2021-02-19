@@ -32,14 +32,13 @@ function createGrid(shooterStartPosition) {
     grid.appendChild(boxNumber)
     boxes.push(boxNumber)
   }
-  // addShooter(shooterStartPosition)
+  addShooter(shooterStartPosition)
 }
-console.log(boxes)
 
 //ADD SHOOTER
-// function addShooter(position) {
-//   boxes[position].classList.add(shooterClass)
-// }
+function addShooter(position) {
+  boxes[position].classList.add(shooterClass)
+}
 
 
 

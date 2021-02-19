@@ -33,3 +33,8 @@ body {
   width: 10%;
 }
 
+.grid div.shooter {
+  background-image: url('https://www.pikpng.com/pngl/m/220-2205494_space-invaders-ship-clipart.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
