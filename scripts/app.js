@@ -11,9 +11,8 @@ function init() {
 
   //ALIENS
   const alienClass = 'alien'
-  const alienStartPosition = 2
   const currentAlienPosition = 0
-  const alienArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+  const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
   
 
   //SHOOTER
@@ -34,13 +33,14 @@ function init() {
       boxes.push(boxNumber)
     }
     addShooter(shooterStartPosition)
-    addAliens(alienStartPosition)
+    addAliens(currentAlienPosition)
 
   }
 
 
   //START THE GAME
   function startGame() {
+    moveAliens()
   }
 
 
@@ -74,7 +74,7 @@ function init() {
   //ADD ALIENS
   function addAliens() {
     alienArray.forEach(alien => {
-      boxes[alien].classList.add(alienClass)
+      boxes[alien + currentAlienPosition].classList.add(alienClass)
     })
   }
   
@@ -90,7 +90,23 @@ function init() {
   //MOVE ALIENS
 
   function moveAliens() {
-    const leftSide = 
+    const leftSide = alienArray[0] % width 
+    const rightSide = [alienArray.length - 1] % width
+    alienArray.forEach(alien => {
+      setInterval(() => {
+        alienArray[alien] ++
+        if (currentAlienPosition[alien] === leftSide) {
+          return currentAlienPosition + width
+        } else if (currentAlienPosition[alien] === rightSide) {
+          return currentAlienPosition + width
+        }
+      }, 2000)
+      // if (currentAlienPosition[alien] === leftSide) {
+      //   return currentAlienPosition + width
+      // } else if (currentAlienPosition[alien] === rightSide) {
+      //   return currentAlienPosition + width
+      // }
+    })
   }
 
 
@@ -98,7 +114,7 @@ function init() {
 
 
   //EVENT LISTENERS
-  document.addEventListener('keyup', moveShooter)
+  startButton.addEventListener('keyup', moveShooter)
   document.addEventListener('click', startGame)
 
   createGrid(shooterStartPosition)
