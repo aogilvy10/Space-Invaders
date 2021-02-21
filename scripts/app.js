@@ -2,6 +2,7 @@ function init() {
 
   ///--------------VARIABLES--------------- 
   const grid = document.querySelector('.grid')
+  const startButton = document.querySelector('.start')
 
   //DEFINING THE GRID
   const width = 10
@@ -13,7 +14,7 @@ function init() {
   const alienStartPosition = 2
   const currentAlienPosition = 0
   const alienArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-
+  
 
   //SHOOTER
   const shooterClass = 'shooter'
@@ -34,7 +35,14 @@ function init() {
     }
     addShooter(shooterStartPosition)
     addAliens(alienStartPosition)
+
   }
+
+
+  //START THE GAME
+  function startGame() {
+  }
+
 
 
 
@@ -58,7 +66,7 @@ function init() {
       currentShooterPosition++
     } else if (key === 37 && currentShooterPosition % width !== 0) {
       currentShooterPosition --
-    }
+    } 
     addShooter(currentShooterPosition)
   }
   
@@ -71,11 +79,27 @@ function init() {
   }
   
 
+  //REMOVE ALIENS
+
+  function removeAliens () {
+    alienArray.forEach(alien => {
+      boxes[alien].remove(alienClass)
+    })
+  }
+
+  //MOVE ALIENS
+
+  function moveAliens() {
+    const leftSide = 
+  }
+
+
 
 
 
   //EVENT LISTENERS
   document.addEventListener('keyup', moveShooter)
+  document.addEventListener('click', startGame)
 
   createGrid(shooterStartPosition)
 }
