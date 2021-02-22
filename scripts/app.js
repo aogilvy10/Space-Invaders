@@ -12,8 +12,8 @@ function init() {
   //ALIENS
   const alienClass = 'alien'
   const currentAlienPosition = 0
-  const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
-  let alienDirection = 1
+  let alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
+  const alienDirection = [1,2]
   
 
   //SHOOTER
@@ -92,25 +92,34 @@ function init() {
 
   //DO I NEED TO DECLARE A VARIBALE FOR DIRECTION?
   //THEN DO I NEED TO PUT ALL OF THESE FUNCTIONS INSIDE MY START GAME FUNCTION SO IT RUNS ONCE THE BUTTON IS CLICK?
-  //I AM CREATING FUNCTIONS FOR EACH PART OF THE GAME, IS THAT THE WRONG WAY TO GO ABOUT IT?
-  //TRIED PREVENT DEFAULT SO WHEN PRESS UP OR DOWN KEYS IT DOESNT MOVE THE WHOLE PAGE
   //HOW WOULD I GO ABOUT MAKE THE ALIENS DIFFERENT, WOULD I ASSIGN THE INDEX OR CERTAIN IMAGES A CLASS AND THEN ADD THE BACKGROUND? OR TO MAKE THE ALIENS SMALLER
+
+  //if alien direction is one 
+  //alien array inside the set interval
+  //add a timer for each element 
+  //remove the classes
+  //update the position 
+  //then readd them
+  //before i update 
+  //if direction = 1 currentposition
+  //alienarray + 1
 
   function moveAliens() {
     const leftSide = alienArray[0] % width 
     const rightSide = [alienArray.length - 1] % width
-    alienArray.forEach(alien => {
-      setInterval(() => {
-        addAliens()
+    setInterval(() => {
+      alienArray.forEach(alien => {
+        removeAliens()
+        alienArray ++
         if (currentAlienPosition[alien] === leftSide) {
           return currentAlienPosition + width
         } else if (currentAlienPosition[alien] === rightSide) {
           return currentAlienPosition + width
         } else {
-          alienDirection++
+          console.log('bollocks')
         }
-      }, 2000)
-    })
+      })
+    }, 2000)
   }
 
 
