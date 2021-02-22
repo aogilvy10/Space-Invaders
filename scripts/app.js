@@ -89,23 +89,22 @@ function init() {
 
   //MOVE ALIENS
 
+  //DO I NEED TO DECLARE A VARIBALE FOR DIRECTION?
+  //THEN DO I NEED TO PUT ALL OF THESE FUNCTIONS INSIDE MY START GAME FUNCTION SO IT RUNS ONCE THE BUTTON IS CLICK?
+  //I AM CREATING FUNCTIONS FOR EACH PART OF THE GAME, IS THAT THE WRONG WAY TO GO ABOUT IT?
+
   function moveAliens() {
     const leftSide = alienArray[0] % width 
     const rightSide = [alienArray.length - 1] % width
     alienArray.forEach(alien => {
       setInterval(() => {
-        alienArray[alien] ++
+        addAliens()
         if (currentAlienPosition[alien] === leftSide) {
           return currentAlienPosition + width
         } else if (currentAlienPosition[alien] === rightSide) {
           return currentAlienPosition + width
         }
       }, 2000)
-      // if (currentAlienPosition[alien] === leftSide) {
-      //   return currentAlienPosition + width
-      // } else if (currentAlienPosition[alien] === rightSide) {
-      //   return currentAlienPosition + width
-      // }
     })
   }
 
