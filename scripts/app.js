@@ -12,7 +12,7 @@ function init() {
   //ALIENS
   const alienClass = 'alien'
   const currentAlienPosition = 0
-  let alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
+  const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
   const alienDirection = [1,2]
   
 
@@ -82,10 +82,13 @@ function init() {
 
   //REMOVE ALIENS
 
-  function removeAliens () {
-    alienArray.forEach(alien => {
-      boxes[alien].remove(alienClass)
-    })
+  function removeAliens (alien) {
+    console.log(alien)
+    // alien.classList.remove(alienClass)
+    boxes[alien].classList.remove(alienClass)
+    
+    // alienArray.forEach(alien => {
+    // })
   }
 
   //MOVE ALIENS
@@ -94,33 +97,57 @@ function init() {
   //THEN DO I NEED TO PUT ALL OF THESE FUNCTIONS INSIDE MY START GAME FUNCTION SO IT RUNS ONCE THE BUTTON IS CLICK?
   //HOW WOULD I GO ABOUT MAKE THE ALIENS DIFFERENT, WOULD I ASSIGN THE INDEX OR CERTAIN IMAGES A CLASS AND THEN ADD THE BACKGROUND? OR TO MAKE THE ALIENS SMALLER
 
-  //if alien direction is one 
-  //alien array inside the set interval
-  //add a timer for each element 
-  //remove the classes
-  //update the position 
-  //then readd them
-  //before i update 
-  //if direction = 1 currentposition
-  //alienarray + 1
+  //check if any of the indexs are hitting 
 
   function moveAliens() {
     const leftSide = alienArray[0] % width 
     const rightSide = [alienArray.length - 1] % width
     setInterval(() => {
-      alienArray.forEach(alien => {
-        removeAliens()
-        alienArray ++
-        if (currentAlienPosition[alien] === leftSide) {
-          return currentAlienPosition + width
-        } else if (currentAlienPosition[alien] === rightSide) {
-          return currentAlienPosition + width
-        } else {
-          console.log('bollocks')
-        }
+      alienArray.forEach((alien, i) => {
+        removeAliens(alien)
+        alienArray[i] = alienArray[i] + 1
+        addAliens()
+        if (alienArray[alien] === leftSide) {
+          alienArray[alien] + width
+        } else if (alienArray[alien] === rightSide) {
+          alienArray[alien] + width
+        } 
       })
     }, 2000)
   }
+
+
+  
+
+  // alienArray.forEach(alien => {
+  //   removeAliens()
+  //   alienArray ++
+  //   addAliens()
+  //   if (currentAlienPosition[alien] === leftSide) {
+  //     return currentAlienPosition + width
+  //   } else if (currentAlienPosition[alien] === rightSide) {
+  //     return currentAlienPosition + width
+  //   } else {
+  //     console.log('bollocks')
+  //   }
+  // })
+
+
+  //THE LASER
+
+  // function shootLaser() {
+  //   let laserId
+  //   let currentLaserPosition = currentShooterPosition
+  //   function moveLaser() {
+  //     boxes[currentLaserPosition].classList.remove('laser')
+  //     currentLaserPosition -= width
+  //     if (boxes[currentLaserPosition].contains(alienClass)){
+  //       boxes[currentLaserPosition].classList.remove('laser')
+  //       boxes[currentLaserPosition].classList.remove(alienClass)
+  //     } 
+  //   }
+  // }
+
 
 
 
@@ -128,7 +155,7 @@ function init() {
 
   //EVENT LISTENERS
   startButton.addEventListener('keyup', moveShooter)
-  document.addEventListener('click', startGame)
+  startButton.addEventListener('click', startGame)
 
   createGrid(shooterStartPosition)
 }

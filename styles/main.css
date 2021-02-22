@@ -18,9 +18,15 @@ body {
 } 
 
 
-/* NEW STUFF */
+.laser {
+  background-color: red;
+}
 
-/* html {
+
+
+/* NEW STUFF */
+/* ADD BACK */
+ html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
@@ -104,7 +110,7 @@ body {
   to {
     transform: translateY(-2000px);
   }
-} */
+} 
 
 
 /* GRID STUFF */
@@ -133,7 +139,6 @@ body {
   width: 10%;
 }
 
-/* use background editor  */
 
 .grid div.shooter {
   background-image: url('../images/Shooter.png');
