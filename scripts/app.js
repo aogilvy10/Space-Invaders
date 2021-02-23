@@ -13,8 +13,7 @@ function init() {
   const alienClass = 'alien'
   const currentAlienPosition = 0
   const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
-  const alienDirection = [1,2]
-  
+  const deadAliensArray = []  
 
   //SHOOTER
   const shooterClass = 'shooter'
@@ -84,25 +83,15 @@ function init() {
 
   function removeAliens (alien) {
     console.log(alien)
-    // alien.classList.remove(alienClass)
     boxes[alien].classList.remove(alienClass)
-    
-    // alienArray.forEach(alien => {
-    // })
   }
 
   //MOVE ALIENS
 
-  //DO I NEED TO DECLARE A VARIBALE FOR DIRECTION?
-  //THEN DO I NEED TO PUT ALL OF THESE FUNCTIONS INSIDE MY START GAME FUNCTION SO IT RUNS ONCE THE BUTTON IS CLICK?
-  //HOW WOULD I GO ABOUT MAKE THE ALIENS DIFFERENT, WOULD I ASSIGN THE INDEX OR CERTAIN IMAGES A CLASS AND THEN ADD THE BACKGROUND? OR TO MAKE THE ALIENS SMALLER
-
-  //check if any of the indexs are hitting 
-
   function moveAliens() {
     const leftSide = alienArray[0] % width 
     const rightSide = [alienArray.length - 1] % width
-    setInterval(() => {
+    const timerId = setInterval(() => {
       alienArray.forEach((alien, i) => {
         removeAliens(alien)
         alienArray[i] = alienArray[i] + 1
@@ -111,43 +100,47 @@ function init() {
           alienArray[alien] + width
         } else if (alienArray[alien] === rightSide) {
           alienArray[alien] + width
-        } 
+        } else if (alienArray[i] >= width * width - 10) {
+          clearInterval(timerId)
+          window.alert('GAME IS OVER, BETTER LUCK NEXT TIME')
+        }
       })
-    }, 2000)
+    }, 100)
   }
 
 
   
 
-  // alienArray.forEach(alien => {
-  //   removeAliens()
-  //   alienArray ++
-  //   addAliens()
-  //   if (currentAlienPosition[alien] === leftSide) {
-  //     return currentAlienPosition + width
-  //   } else if (currentAlienPosition[alien] === rightSide) {
-  //     return currentAlienPosition + width
-  //   } else {
-  //     console.log('bollocks')
-  //   }
-  // })
 
 
   //THE LASER
 
-  // function shootLaser() {
-  //   let laserId
-  //   let currentLaserPosition = currentShooterPosition
-  //   function moveLaser() {
-  //     boxes[currentLaserPosition].classList.remove('laser')
-  //     currentLaserPosition -= width
-  //     if (boxes[currentLaserPosition].contains(alienClass)){
-  //       boxes[currentLaserPosition].classList.remove('laser')
-  //       boxes[currentLaserPosition].classList.remove(alienClass)
-  //     } 
-  //   }
-  // }
+  function shootLaser() {
+    let laserId
+    let currentLaserPosition = currentShooterPosition
+    function moveLaser() {
+      boxes[currentLaserPosition].classList.remove('laser')
+      currentLaserPosition -= width
+      if (boxes[currentLaserPosition].contains(alienClass)){
+        boxes[currentLaserPosition].classList.remove('laser')
+        boxes[currentLaserPosition].classList.remove(alienClass)
 
+        const deadAliens = alienArray.indexOf(currentLaserPosition)
+        deadAliensArray.push(deadAliens)
+
+        if (currentLaserPosition < width) {
+          clearInterval(laserId)
+          
+        }
+      } 
+    }
+  }
+
+
+
+  //WRITE A FUNCITON TO RESET THE GAME
+  //so need to make all the varibales go back to their original place
+  //and remove event listeners maybe?
 
 
 
