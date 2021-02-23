@@ -20,6 +20,9 @@ function init() {
   const shooterStartPosition = 94
   let currentShooterPosition = 94
 
+  //LASER
+  const laserClass = 'laser'
+
 
 
   //MAKING THE GRID
@@ -64,8 +67,11 @@ function init() {
       currentShooterPosition++
     } else if (key === 37 && currentShooterPosition % width !== 0) {
       currentShooterPosition --
-    } 
+    } else if (key === 32) {
+      shootLaser()
+    }
     addShooter(currentShooterPosition)
+
   }
   
 
@@ -80,7 +86,6 @@ function init() {
   //REMOVE ALIENS
 
   function removeAliens (alien) {
-    console.log(alien)
     boxes[alien].classList.remove(alienClass)
   }
 
@@ -100,11 +105,10 @@ function init() {
           alienArray[alien] + width
         } else if (alienArray[i] >= width * width - 10) {
           clearInterval(timerId)
-          window.alert('GAME IS OVER, BETTER LUCK NEXT TIME')
           resetGame()
         }
       })
-    }, 100)
+    }, 1000)
   }
 
 
@@ -120,6 +124,34 @@ function init() {
   //if they are the same we want the game to end and alert a winner
   // need to add event listener so if we press space it will shoot
 
+  //need a set interval 
+  //remove update add
+  //if the laser is in the top grid disapper and clear interval 
+  //or compare current laser index with alien array 
+  //remove class
+  //remove laserinterval
+  //remove alien from alien array 
+  //before -= width 
+  //if in top grid do that before we update the position
+  //if its hit will be after update the posiiton 
+  //LASER MOVEMENT
+
+  function shootLaser() {
+    let currentLaserPosition = currentShooterPosition 
+    const laserInterval = setInterval(() => {
+      boxes[currentLaserPosition].classList.remove(laserClass)
+      // if (boxes[currentLaserPosition] < width) {
+      //   console.log(boxes[currentLaserPosition])
+      //   boxes[currentLaserPosition].classList.remove(laserClass)
+      //   clearInterval(laserInterval)
+      // }
+      currentLaserPosition -= width
+      boxes[currentLaserPosition].classList.add(laserClass)
+    }, 500)
+  }
+
+
+
 
   // function shootLaser() {
   //   let laserId
@@ -134,8 +166,8 @@ function init() {
   //       const deadAliens = alienArray.indexOf(currentLaserPosition)
   //       deadAliensArray.push(deadAliens)
 
-  //  make it so if the laser hits the top it disappers 
-  //  need to make it delete after a certain amount of time
+  // //  make it so if the laser hits the top it disappers 
+  // //  need to make it delete after a certain amount of time
 
   //       if (currentLaserPosition < width) {
   //         clearInterval(laserId)
@@ -147,7 +179,7 @@ function init() {
   //   }
   // }
   
-  //ADD EVENT LISTENER FOR THE LASER
+  // ADD EVENT LISTENER FOR THE LASER
   // document.addEventListener('keyup', event => {
   //   if (event.keyCode === 32) {
   //     moveLaser()
@@ -156,12 +188,16 @@ function init() {
 
 
 
-  //WRITE A FUNCITON TO RESET THE GAME
-  //so need to make all the varibales go back to their original place
+  //FUNCITON TO RESET THE GAME
 
   function resetGame() {
     location.reload()
   }
+
+
+  //ADD A RANDOM ALIEN BOMB
+  //first need the bomb to be random and coming from one of the aliens in the alien array 
+
 
 
 

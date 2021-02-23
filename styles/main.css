@@ -17,9 +17,10 @@ body {
   top: 3%;
 } 
 
-
+/* find laser image for it */
 .laser {
   background-color: red;
+  width: 5px;
 }
 
 .total {
@@ -37,7 +38,7 @@ body {
 
 /* NEW STUFF */
 
-html {
+/* html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
@@ -121,7 +122,7 @@ html {
   to {
     transform: translateY(-2000px);
   }
-}     
+}      */
 
 
 /* GRID STUFF */
