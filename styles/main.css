@@ -12,9 +12,9 @@ body {
   color: white;
   border: 2px solid white;
   padding: 10px;
-  position: fixed;
+  position: absolute;
   left: 46%;
-  top: 5%;
+  top: 3%;
 } 
 
 
@@ -22,11 +22,22 @@ body {
   background-color: red;
 }
 
+.total {
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  width: 16vw;
+  text-align: center;
+  position: absolute;
+  left: 42%;
+  top: 8%;
+} 
+
 
 
 /* NEW STUFF */
-/* ADD BACK */
- html {
+
+html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
@@ -110,7 +121,7 @@ body {
   to {
     transform: translateY(-2000px);
   }
-} 
+}     
 
 
 /* GRID STUFF */
@@ -131,6 +142,8 @@ body {
   height: 600px;
   width: 600px;
   background-color: #2f3537;
+  /* margin-left: 20vw; */
+  /* margin-top: 16vh; */
 }
 
 .grid div {

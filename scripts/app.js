@@ -13,7 +13,7 @@ function init() {
   const alienClass = 'alien'
   const currentAlienPosition = 0
   const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
-  const deadAliensArray = []  
+  // const deadAliensArray = []  
 
   //SHOOTER
   const shooterClass = 'shooter'
@@ -42,8 +42,6 @@ function init() {
   function startGame() {
     moveAliens()
   }
-
-
 
 
   //ADD SHOOTER
@@ -103,6 +101,7 @@ function init() {
         } else if (alienArray[i] >= width * width - 10) {
           clearInterval(timerId)
           window.alert('GAME IS OVER, BETTER LUCK NEXT TIME')
+          resetGame()
         }
       })
     }, 100)
@@ -115,32 +114,54 @@ function init() {
 
   //THE LASER
 
-  function shootLaser() {
-    let laserId
-    let currentLaserPosition = currentShooterPosition
-    function moveLaser() {
-      boxes[currentLaserPosition].classList.remove('laser')
-      currentLaserPosition -= width
-      if (boxes[currentLaserPosition].contains(alienClass)){
-        boxes[currentLaserPosition].classList.remove('laser')
-        boxes[currentLaserPosition].classList.remove(alienClass)
+  //need the current position of the laser
+  //if the laser finds an alien remove the alien class and make the laser disapper
+  //we want to keep track of how many dead aliens there are and compare to our aliens array
+  //if they are the same we want the game to end and alert a winner
+  // need to add event listener so if we press space it will shoot
 
-        const deadAliens = alienArray.indexOf(currentLaserPosition)
-        deadAliensArray.push(deadAliens)
 
-        if (currentLaserPosition < width) {
-          clearInterval(laserId)
-          
-        }
-      } 
-    }
-  }
+  // function shootLaser() {
+  //   let laserId
+  //   let currentLaserPosition = currentShooterPosition
+  //   function moveLaser() {
+  //     boxes[currentLaserPosition].classList.remove('laser')
+  //     currentLaserPosition -= width
+  //     if (boxes[currentLaserPosition].contains(alienClass)){
+  //       boxes[currentLaserPosition].classList.remove('laser')
+  //       boxes[currentLaserPosition].classList.remove(alienClass)
+
+  //       const deadAliens = alienArray.indexOf(currentLaserPosition)
+  //       deadAliensArray.push(deadAliens)
+
+  //  make it so if the laser hits the top it disappers 
+  //  need to make it delete after a certain amount of time
+
+  //       if (currentLaserPosition < width) {
+  //         clearInterval(laserId)
+  //         setTimeout(() => {
+  //           boxes[currentLaserPosition].classList.remove('laser')
+  //         }, 100)
+  //       }
+  //     } 
+  //   }
+  // }
+  
+  //ADD EVENT LISTENER FOR THE LASER
+  // document.addEventListener('keyup', event => {
+  //   if (event.keyCode === 32) {
+  //     moveLaser()
+  //   }
+  // })
 
 
 
   //WRITE A FUNCITON TO RESET THE GAME
   //so need to make all the varibales go back to their original place
-  //and remove event listeners maybe?
+
+  function resetGame() {
+    location.reload()
+  }
 
 
 
@@ -149,6 +170,7 @@ function init() {
   //EVENT LISTENERS
   startButton.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)
+  // document.addEventListener('keyup', shootLaser)
 
   createGrid(shooterStartPosition)
 }
