@@ -3,6 +3,7 @@ function init() {
   ///--------------VARIABLES--------------- 
   const grid = document.querySelector('.grid')
   const startButton = document.querySelector('.start')
+  const total = document.querySelector('span')
 
   //DEFINING THE GRID
   const width = 10
@@ -12,7 +13,7 @@ function init() {
   //ALIENS
   const alienClass = 'alien'
   const currentAlienPosition = 0
-  const alienArray = [1,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28]
+  let alienArray = [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]
   // const deadAliensArray = []  
 
   //SHOOTER
@@ -44,6 +45,7 @@ function init() {
   //START THE GAME
   function startGame() {
     moveAliens()
+    startButton.disabled = 'true'
   }
 
 
@@ -140,51 +142,21 @@ function init() {
     let currentLaserPosition = currentShooterPosition 
     const laserInterval = setInterval(() => {
       boxes[currentLaserPosition].classList.remove(laserClass)
-      // if (boxes[currentLaserPosition] < width) {
-      //   console.log(boxes[currentLaserPosition])
-      //   boxes[currentLaserPosition].classList.remove(laserClass)
-      //   clearInterval(laserInterval)
-      // }
       currentLaserPosition -= width
       boxes[currentLaserPosition].classList.add(laserClass)
+      if (boxes[currentLaserPosition].classList.contains(alienClass) ) {
+        boxes[currentLaserPosition].classList.remove(laserClass)
+        boxes[currentLaserPosition].classList.remove(alienClass)
+        alienArray = alienArray.filter((i) => (i) !== currentLaserPosition)
+        //need to add the total not just in a line
+        total.innerHTML += 100
+        clearInterval(laserInterval)
+      } else if (currentLaserPosition < width) {
+        boxes[currentLaserPosition].classList.remove(laserClass)
+        clearInterval(laserInterval)
+      }
     }, 500)
   }
-
-
-
-
-  // function shootLaser() {
-  //   let laserId
-  //   let currentLaserPosition = currentShooterPosition
-  //   function moveLaser() {
-  //     boxes[currentLaserPosition].classList.remove('laser')
-  //     currentLaserPosition -= width
-  //     if (boxes[currentLaserPosition].contains(alienClass)){
-  //       boxes[currentLaserPosition].classList.remove('laser')
-  //       boxes[currentLaserPosition].classList.remove(alienClass)
-
-  //       const deadAliens = alienArray.indexOf(currentLaserPosition)
-  //       deadAliensArray.push(deadAliens)
-
-  // //  make it so if the laser hits the top it disappers 
-  // //  need to make it delete after a certain amount of time
-
-  //       if (currentLaserPosition < width) {
-  //         clearInterval(laserId)
-  //         setTimeout(() => {
-  //           boxes[currentLaserPosition].classList.remove('laser')
-  //         }, 100)
-  //       }
-  //     } 
-  //   }
-  // }
-  
-  // ADD EVENT LISTENER FOR THE LASER
-  // document.addEventListener('keyup', event => {
-  //   if (event.keyCode === 32) {
-  //     moveLaser()
-  //   }
-  // })
 
 
 
@@ -204,7 +176,7 @@ function init() {
 
 
   //EVENT LISTENERS
-  startButton.addEventListener('keyup', moveShooter)
+  document.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)
   // document.addEventListener('keyup', shootLaser)
 
