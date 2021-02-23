@@ -21,27 +21,26 @@ body {
 /* look up how to put 2 images on top of each other  */
 .laser {
   background-color: red;
+  width: 2%;
 }
 
- /* .total {
+ p {
   background-color: black;
   border: 2px solid white;
   color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}  */
-/* width: 16vw;
-text-align: center;
-position: absolute;
-left: 42%;
-top: 8%; */
+  position: absolute;
+  width: 17vw;
+  left: 41%;
+  top: 7%;
+  text-align: center;
+}  
+
 
 
 
 /* NEW STUFF */
 
-/* html {
+html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
@@ -125,7 +124,7 @@ top: 8%; */
   to {
     transform: translateY(-2000px);
   }
-}      
+}       
 
 
 /* GRID STUFF */
@@ -146,8 +145,6 @@ top: 8%; */
   height: 600px;
   width: 600px;
   background-color: #2f3537;
-  /* margin-left: 20vw; */
-  /* margin-top: 16vh; */
 }
 
 .grid div {

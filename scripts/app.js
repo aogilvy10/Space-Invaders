@@ -4,6 +4,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const startButton = document.querySelector('.start')
   const total = document.querySelector('span')
+  
 
   //DEFINING THE GRID
   const width = 10
@@ -32,7 +33,6 @@ function init() {
   function createGrid(shooterStartPosition) {
     for ( let i = 0; i < areaOfDiv; i++) {
       const boxNumber = document.createElement('div')
-      // boxNumber.innerText = i
       grid.appendChild(boxNumber)
       boxes.push(boxNumber)
     }
@@ -115,27 +115,6 @@ function init() {
 
 
   
-
-
-
-  //THE LASER
-
-  //need the current position of the laser
-  //if the laser finds an alien remove the alien class and make the laser disapper
-  //we want to keep track of how many dead aliens there are and compare to our aliens array
-  //if they are the same we want the game to end and alert a winner
-  // need to add event listener so if we press space it will shoot
-
-  //need a set interval 
-  //remove update add
-  //if the laser is in the top grid disapper and clear interval 
-  //or compare current laser index with alien array 
-  //remove class
-  //remove laserinterval
-  //remove alien from alien array 
-  //before -= width 
-  //if in top grid do that before we update the position
-  //if its hit will be after update the posiiton 
   //LASER MOVEMENT
 
   function shootLaser() {
@@ -148,8 +127,7 @@ function init() {
         boxes[currentLaserPosition].classList.remove(laserClass)
         boxes[currentLaserPosition].classList.remove(alienClass)
         alienArray = alienArray.filter((i) => (i) !== currentLaserPosition)
-        //need to add the total not just in a line
-        total.innerHTML += 100
+        total.innerHTML = Number(total.innerHTML) + 100
         clearInterval(laserInterval)
       } else if (currentLaserPosition < width) {
         boxes[currentLaserPosition].classList.remove(laserClass)
@@ -160,6 +138,13 @@ function init() {
 
 
 
+  
+  
+  //ADD A RANDOM ALIEN BOMB
+  //first need the bomb to be random and coming from one of the aliens in the alien array 
+  
+  
+  
   //FUNCITON TO RESET THE GAME
 
   function resetGame() {
@@ -167,18 +152,11 @@ function init() {
   }
 
 
-  //ADD A RANDOM ALIEN BOMB
-  //first need the bomb to be random and coming from one of the aliens in the alien array 
-
-
-
-
-
 
   //EVENT LISTENERS
+
   document.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)
-  // document.addEventListener('keyup', shootLaser)
 
   createGrid(shooterStartPosition)
 }
