@@ -15,7 +15,6 @@ function init() {
   const alienClass = 'alien'
   const currentAlienPosition = 0
   let alienArray = [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]
-  // const deadAliensArray = []  
 
   //SHOOTER
   const shooterClass = 'shooter'
@@ -24,6 +23,9 @@ function init() {
 
   //LASER
   const laserClass = 'laser'
+
+  //BOMB
+  const bombClass = 'bomb'
 
 
 
@@ -73,7 +75,6 @@ function init() {
       shootLaser()
     }
     addShooter(currentShooterPosition)
-
   }
   
 
@@ -106,11 +107,12 @@ function init() {
         } else if (alienArray[alien] === rightSide) {
           alienArray[alien] + width
         } else if (alienArray[i] >= width * width - 10) {
+          window.alert(`GAME OVER, BETTER LUCK NEXT TIME!! YOUR SCORE IS ${Number(total.innerHTML)}`)
           clearInterval(timerId)
           resetGame()
         }
       })
-    }, 1000)
+    }, 350)
   }
 
 
@@ -132,16 +134,32 @@ function init() {
       } else if (currentLaserPosition < width) {
         boxes[currentLaserPosition].classList.remove(laserClass)
         clearInterval(laserInterval)
+      } else if (Number(total.innerHTML) === 1500) {
+        clearInterval(laserInterval)
+        resetGame()
+        //maybe try and fix it so it is the inner.html
+        window.alert(`YOU WIN!! FINAL SCORE : ${Number(total.innerHTML)}`)
       }
     }, 500)
   }
-
-
 
   
   
   //ADD A RANDOM ALIEN BOMB
   //first need the bomb to be random and coming from one of the aliens in the alien array 
+  // need to make the bomb come from a random spot in the alien array
+  // need to make it if it equals the shooters current position then end the game
+  
+  function alienBomb() {
+    let currentBombPosition = alienArray[Math.floor(Math.random() * alienArray.length)]
+    const bombInterval = setInterval(() => {
+      boxes[currentBombPosition].classList.remove(bombClass)
+      currentBombPosition += width
+      boxes[currentBombPosition].classList.add(bombClass)
+    }, 3000)
+    
+  }
+
   
   
   
@@ -154,6 +172,7 @@ function init() {
 
 
   //EVENT LISTENERS
+  //need to make it so you cant move unless the start button has been pressed
 
   document.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)

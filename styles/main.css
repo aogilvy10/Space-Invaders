@@ -1,11 +1,4 @@
-/* * {
-  box-sizing: border-box;
-}
 
-body {
-  height: 100vh;
-  margin: 0;
-}  */
 
 .start {
   background-color: black;
@@ -16,24 +9,30 @@ body {
   left: 46%;
   top: 3%;
 } 
+p {
+ background-color: black;
+ border: 2px solid white;
+ color: white;
+ position: absolute;
+ width: 17vw;
+ left: 41%;
+ top: 7%;
+ text-align: center;
+}  
 
 /* find laser image for it */
 /* look up how to put 2 images on top of each other  */
 .laser {
   background-color: red;
-  width: 2%;
+  border-radius: 30px;
 }
 
- p {
+.bomb {
   background-color: black;
-  border: 2px solid white;
-  color: white;
-  position: absolute;
-  width: 17vw;
-  left: 41%;
-  top: 7%;
-  text-align: center;
-}  
+  border-radius: 30px;
+}
+
+
 
 
 
@@ -111,6 +110,7 @@ html {
   margin-top: -60px;
   padding-left: 10px;
 }
+
 #title span {
   background: -webkit-linear-gradient(white, #38495a);
   -webkit-background-clip: text;
