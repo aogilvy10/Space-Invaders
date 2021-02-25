@@ -32,7 +32,6 @@ function init() {
 
   //MAKING THE GRID
 
-
   function createGrid(shooterStartPosition) {
     for ( let i = 0; i < areaOfDiv; i++) {
       const boxNumber = document.createElement('div')
@@ -116,7 +115,7 @@ function init() {
           resetGame()
         }
       })
-    }, 650)
+    }, 600)
   }
 
 
@@ -141,7 +140,6 @@ function init() {
       } else if (Number(total.innerHTML) === 1500) {
         clearInterval(laserInterval)
         resetGame()
-        //maybe try and fix it so it is the inner.html
         window.alert(`YOU WIN!! FINAL SCORE : ${Number(total.innerHTML)}`)
       }
     }, 500)
@@ -150,19 +148,25 @@ function init() {
   
   
   //ADD A RANDOM ALIEN BOMB
-  // need to make it if it equals the shooters current position then end the game
-
-  //if in the move funciton
-  //after the current bomb position
   
   function alienBombMove() {
     let currentBombPosition = alienArray[Math.floor(Math.random() * alienArray.length)]
     const bombInterval = setInterval(() => {
       boxes[currentBombPosition].classList.remove(bombClass)
       currentBombPosition += width
-      //add if statement
       boxes[currentBombPosition].classList.add(bombClass)
-      // make the bomb go down the grid
+      //add if statement
+      if (boxes[currentBombPosition] === boxes[currentShooterPosition]){
+        boxes[currentShooterPosition].classList.remove(shooterClass)
+        clearInterval(bombInterval)
+        resetGame()
+        //TRY TO MAKE IT SO THE SHOOTER DISAPPEARS BEFORE THE WINDOW ALERT IS SHOWN
+        window.alert('YOU HAVE BEEN HIT! GAME OVER')
+        //else if isnt working either 
+      } else if (boxes[currentBombPosition] >= width * width - 10) {
+        boxes[currentBombPosition].classList.remove(bombClass)
+      }
+      // boxes[currentBombPosition].classList.add(bombClass)
     }, 1000)
   }
   
@@ -180,21 +184,12 @@ function init() {
   }
 
 
-
   //EVENT LISTENERS
   document.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)
 
   createGrid(shooterStartPosition)
 }
-
-
-
-
-
-
-
-
 
 
 window.addEventListener('DOMContentLoaded', init)

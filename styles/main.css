@@ -1,21 +1,27 @@
 
 
+
 .start {
   background-color: black;
   color: white;
   border: 2px solid white;
   padding: 10px;
   position: absolute;
-  left: 46%;
+  left: 44%;
   top: 3%;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
 } 
+
+.start:hover {background-color: rgb(86, 187, 86)}
+
 p {
  background-color: black;
  border: 2px solid white;
  color: white;
  position: absolute;
- width: 17vw;
- left: 41%;
+ width: 21vw;
+ left: 39%;
  top: 7%;
  text-align: center;
 }  
