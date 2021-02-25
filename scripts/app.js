@@ -57,7 +57,7 @@ function init() {
     playerCanMove = true
     moveAliens()
     createAlienBomb()
-    playAudio()
+    // playAudio()
     startButton.disabled = 'true'
   }
 
@@ -163,19 +163,15 @@ function init() {
     const bombInterval = setInterval(() => {
       boxes[currentBombPosition].classList.remove(bombClass)
       currentBombPosition += width
-      boxes[currentBombPosition].classList.add(bombClass)
-      //add if statement
+      if (!(currentBombPosition >= width * width - 10)) {
+        boxes[currentBombPosition].classList.add(bombClass)
+      }
       if (boxes[currentBombPosition] === boxes[currentShooterPosition]){
         boxes[currentShooterPosition].classList.remove(shooterClass)
         clearInterval(bombInterval)
         resetGame()
-        //TRY TO MAKE IT SO THE SHOOTER DISAPPEARS BEFORE THE WINDOW ALERT IS SHOWN
         window.alert('YOU HAVE BEEN HIT! GAME OVER')
-        //else if isnt working either 
-      } else if (boxes[currentBombPosition] >= width * width - 10) {
-        boxes[currentBombPosition].classList.remove(bombClass)
-      }
-      // boxes[currentBombPosition].classList.add(bombClass)
+      } 
     }, 1000)
   }
   
