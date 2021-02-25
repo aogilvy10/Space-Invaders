@@ -4,6 +4,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const startButton = document.querySelector('.start')
   const total = document.querySelector('span')
+  const audio = document.querySelector('#audio')
   let playerCanMove = false
   
 
@@ -29,6 +30,13 @@ function init() {
   const bombClass = 'bomb'
 
 
+  //AUDIO
+
+  function playAudio() {
+    audio.src = 'https://www.free-stock-music.com/music/alexander-nakarada-space-ambience.mp3'
+    audio.play()
+  }
+
 
   //MAKING THE GRID
 
@@ -49,6 +57,7 @@ function init() {
     playerCanMove = true
     moveAliens()
     createAlienBomb()
+    playAudio()
     startButton.disabled = 'true'
   }
 
@@ -115,7 +124,7 @@ function init() {
           resetGame()
         }
       })
-    }, 600)
+    }, 450)
   }
 
 
@@ -173,7 +182,7 @@ function init() {
   function createAlienBomb() {
     setInterval(() => {
       alienBombMove()
-    }, 3000)
+    }, 2500)
   }
   
   
