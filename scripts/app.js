@@ -33,7 +33,7 @@ function init() {
   //AUDIO
 
   function playAudio() {
-    audio.src = 'https://www.free-stock-music.com/music/alexander-nakarada-space-ambience.mp3'
+    audio.src = 'https://www.televisiontunes.com/song/download/7629'
     audio.play()
   }
 
@@ -57,7 +57,7 @@ function init() {
     playerCanMove = true
     moveAliens()
     createAlienBomb()
-    // playAudio()
+    playAudio()
     startButton.disabled = 'true'
   }
 
@@ -124,7 +124,7 @@ function init() {
           resetGame()
         }
       })
-    }, 450)
+    }, 600)
   }
 
 
@@ -163,22 +163,22 @@ function init() {
     const bombInterval = setInterval(() => {
       boxes[currentBombPosition].classList.remove(bombClass)
       currentBombPosition += width
-      if (!(currentBombPosition >= width * width - 10)) {
-        boxes[currentBombPosition].classList.add(bombClass)
-      }
       if (boxes[currentBombPosition] === boxes[currentShooterPosition]){
         boxes[currentShooterPosition].classList.remove(shooterClass)
         clearInterval(bombInterval)
         resetGame()
         window.alert('YOU HAVE BEEN HIT! GAME OVER')
       } 
-    }, 1000)
+      if (!(currentBombPosition >= width * width - 10)) {
+        boxes[currentBombPosition].classList.add(bombClass)
+      }
+    }, 800)
   }
   
   function createAlienBomb() {
     setInterval(() => {
       alienBombMove()
-    }, 2500)
+    }, 2000)
   }
   
   
