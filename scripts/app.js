@@ -4,6 +4,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const startButton = document.querySelector('.start')
   const total = document.querySelector('span')
+  let playerCanMove = false
   
 
   //DEFINING THE GRID
@@ -46,7 +47,9 @@ function init() {
 
   //START THE GAME
   function startGame() {
+    playerCanMove = true
     moveAliens()
+    createAlienBomb()
     startButton.disabled = 'true'
   }
 
@@ -65,6 +68,7 @@ function init() {
 
   //MOVE THE SHOOTER
   function moveShooter(event) {
+    if (playerCanMove === false) return
     const key = event.keyCode
     removeShooter(currentShooterPosition)
     if (key === 39 && currentShooterPosition % width !== width - 1 ) {
@@ -112,7 +116,7 @@ function init() {
           resetGame()
         }
       })
-    }, 350)
+    }, 650)
   }
 
 
@@ -146,21 +150,27 @@ function init() {
   
   
   //ADD A RANDOM ALIEN BOMB
-  //first need the bomb to be random and coming from one of the aliens in the alien array 
-  // need to make the bomb come from a random spot in the alien array
   // need to make it if it equals the shooters current position then end the game
+
+  //if in the move funciton
+  //after the current bomb position
   
-  function alienBomb() {
+  function alienBombMove() {
     let currentBombPosition = alienArray[Math.floor(Math.random() * alienArray.length)]
     const bombInterval = setInterval(() => {
       boxes[currentBombPosition].classList.remove(bombClass)
       currentBombPosition += width
+      //add if statement
       boxes[currentBombPosition].classList.add(bombClass)
-    }, 3000)
-    
+      // make the bomb go down the grid
+    }, 1000)
   }
-
   
+  function createAlienBomb() {
+    setInterval(() => {
+      alienBombMove()
+    }, 3000)
+  }
   
   
   //FUNCITON TO RESET THE GAME
@@ -172,8 +182,6 @@ function init() {
 
 
   //EVENT LISTENERS
-  //need to make it so you cant move unless the start button has been pressed
-
   document.addEventListener('keyup', moveShooter)
   startButton.addEventListener('click', startGame)
 
