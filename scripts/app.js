@@ -119,12 +119,12 @@ function init() {
         } else if (alienArray[alien] === rightSide) {
           alienArray[alien] + width
         } else if (alienArray[i] >= width * width - 10) {
-          window.alert(`GAME OVER, BETTER LUCK NEXT TIME!! YOUR SCORE IS ${Number(total.innerHTML)}`)
+          window.alert(`GAME OVER, BETTER LUCK NEXT TIME!! FINAL SCORE ${Number(total.innerHTML)}`)
           clearInterval(timerId)
           resetGame()
         }
       })
-    }, 600)
+    }, 550)
   }
 
 
@@ -151,30 +151,34 @@ function init() {
         resetGame()
         window.alert(`YOU WIN!! FINAL SCORE : ${Number(total.innerHTML)}`)
       }
-    }, 500)
+    }, 300)
   }
 
   
   
-  //ADD A RANDOM ALIEN BOMB
+  //MOVE ALIEN BOMB
   
   function alienBombMove() {
     let currentBombPosition = alienArray[Math.floor(Math.random() * alienArray.length)]
     const bombInterval = setInterval(() => {
       boxes[currentBombPosition].classList.remove(bombClass)
       currentBombPosition += width
-      if (boxes[currentBombPosition] === boxes[currentShooterPosition]){
+      if (!(currentBombPosition >= width * width - 10)) {
+        boxes[currentBombPosition].classList.add(bombClass)
+      } else if (boxes[currentBombPosition] === boxes[currentShooterPosition]){
         boxes[currentShooterPosition].classList.remove(shooterClass)
         clearInterval(bombInterval)
         resetGame()
-        window.alert('YOU HAVE BEEN HIT! GAME OVER')
-      } 
-      if (!(currentBombPosition >= width * width - 10)) {
-        boxes[currentBombPosition].classList.add(bombClass)
+        window.alert(`YOU HAVE BEEN HIT! GAME OVER. FINAL SCORE : ${Number(total.innerHTML)}`)
+      }
+      if (currentBombPosition >= width * width - 10) {
+        boxes[currentBombPosition].classList.remove(bombClass)
+        clearInterval(bombInterval)
       }
     }, 800)
   }
   
+  //CREATE ALIEN BOMB
   function createAlienBomb() {
     setInterval(() => {
       alienBombMove()
