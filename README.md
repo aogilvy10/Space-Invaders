@@ -108,9 +108,13 @@ let currentBombPosition = alienArray[Math.floor(Math.random() * alienArray.lengt
 ```
 ![image](https://user-images.githubusercontent.com/68297258/117761020-7f804900-b1db-11eb-917d-e85254fe58d9.png)
  
+## Wins
+One of my major wins I accomplished during this project would have to be the functionality of the aliens movement using a timer. I was not familiar with setIntervals so creating a function that allowed for my aliens to move down the grid after a set amount of time felt like a great accomplishment. After, giving the aliens functionality to drop bombs randomly was another success of mine. I am proud of what I was able to accomplish with not so much knowledge.
+
 ## Bugs and Blocks
  
 With this being my first ever computer software project, I was definitely a bit nervous on how it would turn out. I started off well by creating the grids and adding the aliens and shooter, but when I began the movement process I was a little stuck. Once I figured out the significance of a conditional statement it all clicked. Styling was one area I believe I can add more, but it being my first project I tried to make it more slick. 
+
  
 ## Key Learnings
  
